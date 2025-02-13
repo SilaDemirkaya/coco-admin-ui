@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_db
+    restart: always
+    networks:
+      - coco-network
+
+  coco-admin-ui:
+    build: .
+    container_name: coco-admin-ui
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo_db
+    environment:
+      - MONGO_URI=mongodb+srv://demirkayasila:fBVBeyJEgRRZ5TGe@coco-admin-ui.cr6lk.mongodb.net/coco_bubble_tea?retryWrites=true&w=majority&appName=coco-admin-ui
+    networks:
+      - coco-network
+
+networks:
+  coco-network:
