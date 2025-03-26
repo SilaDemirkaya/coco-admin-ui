@@ -1,0 +1,15 @@
+node_modules
+.vscode
+.git
+.DS_Store
+*.log
+*.zip
+*.tar
+*.tar.gz
+*.png
+*.jpg
+*.jpeg
+screenshots
+Media
+*.mp4
+*.mp3

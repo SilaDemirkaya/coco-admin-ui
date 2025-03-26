@@ -1,20 +1,22 @@
-# Use official Node.js runtime as a parent image
 FROM node:16
 
-# Set the working directory
+# Set the working directory inside the container to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy the package.json and package-lock.json first
+COPY api/package*.json ./  
 
-# Install dependencies inside the container (force clean install)
+# Install dependencies
 RUN npm install --force
 
-# Copy the rest of the application code
-COPY . .
+# Copy the entire 'api' directory to the working directory
+COPY ./api ./  
 
-# Expose the application's port
-EXPOSE 8080
+# Ensure the .env file is also copied
+COPY api/.env .env  
 
-# Start the application
+# Expose port 8080
+EXPOSE 8080  
+
+# Start the application using 'server.js'
 CMD ["node", "server.js"]
